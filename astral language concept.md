@@ -1,6 +1,6 @@
 ### Namespace
 
-The default namespace of a piece of code is the filename it was written in
+The default namespace of a piece of code is the filename it was written in<br>
 you can define your own namespace using "namespace" keyword
 examples
 
