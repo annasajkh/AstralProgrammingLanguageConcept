@@ -137,19 +137,17 @@ names.add("robert");
 import ProgrammingLanguage::Utils as Utils;
 import ProgrammingLanguage::Collections::Dictionary as Dictionary;
 
-Dictionary<int32, Person> people = Utils::heap_alloc(
+Dictionary<int32, Person> people = {
     {
-        {
-            2424525,
-            Person("Bob", 24)
-        },
-        
-        {
-            3232224,
-            Person("Steve", 32)
-        }
+        2424525,
+        Person("Bob", 24)
+    },
+    
+    {
+        3232224,
+        Person("Steve", 32)
     }
-)
+}
 
 
 
@@ -221,18 +219,20 @@ if (maybe_number_ptr is int32* number_ptr)
     Console::println(&number_ptr);
 }
 
+// nullable pointer to a pointer to a pointer
+int32*?*?*? something = null;
+
 // WIP
 ```
 
 ### Memory Allocation
 ```cs
-import ProgrammingLanguage::Utils as Utils;
 
 // allocate on the stack using default allocator
-int32* number_stack = Utils::stack_alloc(Utils::size_of(int));
+int32* number_stack = stackalloc int;
 *number_stack = 10;
 
 // allocate on the heap using default allocator
-int32* number_heap = Utils::heapalloc(Utils::size_of(int));
+int32* number_heap = heapalloc int;
 *number_heap = 20;
 ```
