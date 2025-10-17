@@ -1,3 +1,3 @@
 # Astral Programming Language Concept
 
-My programming language Astral concept
+My programming language concept
