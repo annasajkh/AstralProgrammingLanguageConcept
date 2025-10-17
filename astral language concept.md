@@ -140,16 +140,16 @@ import ProgrammingLanguage::Collections::Dictionary as Dictionary;
 Dictionary<int32, Person> people = {
     {
         2424525,
-        Person("Bob", 24)
+        heapalloc Person("Bob", 24)
     },
     
     {
         3232224,
-        Person("Steve", 32)
+        heapalloc Person("Steve", 32)
     }
 }
 
-
+defer delete people;
 
 enum Weapon
 {
@@ -158,7 +158,6 @@ enum Weapon
     Gun
 }
 
-// struct is a value types and it will be allocated on the stack by default
 struct Color
 {
     
