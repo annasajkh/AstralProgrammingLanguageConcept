@@ -131,20 +131,28 @@ string name = "Bob";
 
 int32[] numbers = [1, 2, 3, 4];
 
+import ProgrammingLanguage::Collections::List as List;
+
 List<string> names = ["Bob", "Steve", "Alex"];
 names.add("robert"); 
 
-Dictionary<int32, Person> people = heapalloc(){
+import ProgrammingLanguage::Utils as Utils;
+import ProgrammingLanguage::Collections::Dictionary as Dictionary;
+
+Dictionary<int32, Person> people = Utils::heap_alloc(
     {
-        2424525,
-        Person("Bob", 24)
-    },
-    
-    {
-        32324,
-        Person("Steve", 32)
+        {
+            2424525,
+            Person("Bob", 24)
+        },
+        
+        {
+            3232224,
+            Person("Steve", 32)
+        }
     }
-} 
+)
+
 
 
 enum Weapon
@@ -166,6 +174,7 @@ int32 function(int32 number) mapper = (int32 number)
     return number * number;
 };
 
+// WIP
 ```
 
 ### Variables
