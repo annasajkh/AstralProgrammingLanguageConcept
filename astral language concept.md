@@ -1,12 +1,12 @@
 ### Namespace
 
-The default namespace of a piece of code is filepath of the file + the filename it was written in <br>
+The default namespace of a piece of code is project name + file path of the file + the file name it was written in <br>
 for example
-the file path is `/src/main.astral`
+the file path is `/src/main.astral` and project name is test_project
 ```cs
 import operating_system::console as console
 
-// the namespace for the main function would be src::main
+// the namespace for the main function would be test_project::src::main
 void main()
 {
     console::println("Hello World");
@@ -14,7 +14,7 @@ void main()
 ```
 
 you can define your own namespace using "namespace" keyword
-examples
+for examples
 
 ```cs
 // this namespace will apply to the entire file
@@ -98,7 +98,7 @@ import math;
 
 public float math::abs(float number)
 {
-    // oops there is already abs in math namespace this will error in compile time
+    // oops there is already abs in math namespace this will error at compile time
 }
 
 void main()
@@ -211,10 +211,13 @@ mutable int32 size = 20;
 size = 30; // This work
 
 // all variables are also not null by default
-int32 width = null // Error
+int32 width = null; // Error
 
 // to make it nullable use the ? operator
-int32? maybe_height = null
+int32? maybe_height = null;
+// you can also leave it uninitialize and it will assign it to null (no default values)
+string? maybe_name;
+bool? maybe_enabled;
 
 // check if it null
 if (maybe_height is int32 height)
