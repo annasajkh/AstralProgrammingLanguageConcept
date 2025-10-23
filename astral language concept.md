@@ -1,17 +1,29 @@
 ### Namespace
 
-The default namespace of a piece of code is the filename it was written in<br>
+The default namespace of a piece of code is filepath of the file + the filename it was written in <br>
+for example
+the file path is `/src/main.astral`
+```cs
+import operating_system::console as console
+
+// the namespace for the main function would be src::main
+void main()
+{
+    console::println("Hello World");
+}
+```
+
 you can define your own namespace using "namespace" keyword
 examples
 
 ```cs
 // this namespace will apply to the entire file
-namespace Math;
+namespace math;
 ```
 
 but you can namespace a portion of code like this
 ```cs
-namespace Math
+namespace math
 {
     // private by default
     public float abs(float number)
@@ -22,32 +34,32 @@ namespace Math
 ```
 or with :: operator
 ```cs
-public float Math::abs(float number)
+public float math::abs(float number)
 {
     return number * -1 if number < 0 else number;
 }
 
 // accessing namespace is using :: operator like in c++
-float result = Math::abs(10);
+float result = math::abs(10);
 ```
 
 you can defined nested namespace like this
 ```cs
-namespace OperatingSystem::Console;
+namespace operating_system::console;
 
-namespace OperatingSystem::Display
+namespace operating_system::display
 {
 
 }
 
-public float OperatingSystem::Console::beep()
+public float operating_system::console::beep()
 {
 
 }
 ```
 
 importing namespaces
-file `Math.astral`
+file `math.astral`
 ```cs
 public float abs(float number)
 {
@@ -55,43 +67,43 @@ public float abs(float number)
 }
 ```
 
-file `Main.astral`
+file `main.astral`
 ```cs
-import Math;
+import math;
 
 void main()
 {
-    float result = Math::abs(10);
+    float result = math::abs(10);
 }
 ```
 
 namespace alias to prevent namespace collisions
 
-file `Main.astral`
+file `main.astral`
 ```cs
-import Math as Mathematic;
-import OperatingSystem::Console as Console;
+import math as mathematic;
+import operating_system::console as console;
 
 void main()
 {
-    Console::println(Mathematic::abs(10));
+    console::println(mathematic::abs(10));
 }
 ```
 
-if there is a namespace clash it will error 
+if there is a namespace clash it will error in compile time
 like for example
-file `Main.astral`
+file `main.astral`
 ```cs
-import Math;
+import math;
 
-public float Math::abs(float number)
+public float math::abs(float number)
 {
-    // oops there is already abs in Math namespace this will error
+    // oops there is already abs in math namespace this will error in compile time
 }
 
 void main()
 {
-    float result = Math::abs(10);
+    float result = math::abs(10);
 }
 ```
 
@@ -129,19 +141,16 @@ bool enabled = true;
 char a = 'a';
 string name = "Bob";
 
-// this is default allocated on the stack
+// this is allocated on the stack by default
 int32[] numbers = [1, 2, 3, 4];
 
-import ProgrammingLanguage::Collections::List as List;
+import programming_language::collections;
 
-// this is default allocated on the stack
+// this is allocated on the stack by default
 List<string> names = ["Bob", "Steve", "Alex"];
 names.add("robert"); 
 
-import ProgrammingLanguage::Utils as Utils;
-import ProgrammingLanguage::Collections::Dictionary as Dictionary;
-
-// this is default allocated on the stack
+// this is allocated on the stack by default
 Dictionary<int32, Person> people = {
     {
         2424525,
@@ -183,7 +192,7 @@ struct Color
 }
 
 // function pointers
-int32 function(int32 number) mapper = (int32 number) 
+int32 function(int32 number) double_it = (int32 number) 
 {
     return number * number;
 };
@@ -210,9 +219,9 @@ int32? maybe_height = null
 // check if it null
 if (maybe_height is int32 height)
 {
-    import OperatingSystem::Console as Console;
+    import operating_system::console as console;
 
-    Console::println(height);
+    console::println(height);
 }
 
 // WIP
@@ -232,12 +241,12 @@ int32*? maybe_number_ptr = nullptr;
 // and then you can use the same check to access it
 if (maybe_number_ptr is int32* number_ptr)
 {
-    import OperatingSystem::Console as Console;
+    import operating_system::console as console;
 
-    Console::println(&number_ptr);
+    console::println(&number_ptr);
 }
 
-// nullable pointer to a pointer to a pointer
+// nullable pointer to a nullable pointer to a nullable pointer
 int32*?*?*? something = null;
 
 // WIP
