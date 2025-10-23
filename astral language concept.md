@@ -98,6 +98,8 @@ void main()
 ### Data Types
 
 ```cs
+//primitive data types are all defaulted to be allocated on the stack
+
 // signed int types
 int8 number1 = 1;
 int16 number2 = 2;
@@ -127,17 +129,34 @@ bool enabled = true;
 char a = 'a';
 string name = "Bob";
 
+// this is default allocated on the stack
 int32[] numbers = [1, 2, 3, 4];
 
 import ProgrammingLanguage::Collections::List as List;
 
+// this is default allocated on the stack
 List<string> names = ["Bob", "Steve", "Alex"];
 names.add("robert"); 
 
 import ProgrammingLanguage::Utils as Utils;
 import ProgrammingLanguage::Collections::Dictionary as Dictionary;
 
+// this is default allocated on the stack
 Dictionary<int32, Person> people = {
+    {
+        2424525,
+        heapalloc Person("Bob", 24)
+    },
+    
+    {
+        3232224,
+        heapalloc Person("Steve", 32)
+    }
+}
+
+// or you can specify where you want to allocate
+var people = heapalloc Dictionary<int32, Person>()
+{
     {
         2424525,
         heapalloc Person("Bob", 24)
