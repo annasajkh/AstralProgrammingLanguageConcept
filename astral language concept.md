@@ -1,16 +1,17 @@
 ### Namespace
 
-The default namespace of a piece of code is project name + file path of the file + the file name it was written in (idk if this a good idea but it's better than putting it into the global scope by default)\
+if you don't wrap variables, functions, class, etc in a namespace you cannot import it to other file but you can use it in the current file\
 for example
-the file path is `/src/main.astral` and project name is test_project
 ```cs
 import std::io
 
-// the namespace for the main function would be test_project::src::main
+int8 number = 69;
+
 void main()
 {
     // Console is a static class or struct
     Console.println("Hello World");
+    Console.println(number);
 }
 ```
 
@@ -37,12 +38,9 @@ namespace are `private` by default so it can only be accessed in the same file\
 there is `internal` like in c# to make it accessible on the current project, useful for libraries\
 and there is also `public` to make it accessible everywhere
 ```cs
-internal namespace math
+internal namespace engine_utils
 {
-    float abs(float number)
-    {
-        return number * -1 if number < 0 else number;
-    }
+    
 }
 
 public namespace cat
@@ -82,8 +80,8 @@ void main()
     float result = abs(-10);
 }
 ```
-`abs()` is now in the main namespace, but i think is not good in large codebases\
-because it can collide with the stuff in the main namespace if they have the same name
+`abs()` is now in the top level, but i think is not good in large codebases\
+because it can collide with the stuff in the top level if they have the same name
 so you should wrap it with namespace alias like this
 ```cs
 
@@ -102,18 +100,6 @@ import std::math;
 void main()
 {
     Math.abs(10);
-}
-```
-
-namespace alias to prevent collisions\
-file `main.astral`
-```cs
-import std::math as mathematic;
-import std::io;
-
-void main()
-{
-    Console.println(mathematic::abs(10));
 }
 ```
 
@@ -195,6 +181,8 @@ defer delete numbers_heap;
 
 import std::collections;
 
+// inside List<T> there is collection expressions like in c#
+// so you can make your own custom collections
 List<string> names = heapalloc ["Bob", "Steve", "Alex"];
 names.add("robert"); 
 
