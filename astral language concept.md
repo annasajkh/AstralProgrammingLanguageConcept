@@ -33,8 +33,8 @@ namespace math
 }
 ```
 
-namespace are `private` by default so it can only be accessed in the same file
-there is `internal` like in c# to make it accessible on the current project, useful for libraries
+namespace are `private` by default so it can only be accessed in the same file<br>
+there is `internal` like in c# to make it accessible on the current project, useful for libraries<br>
 and there is also `public` to make it accessible everywhere
 ```cs
 internal namespace math
