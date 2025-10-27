@@ -82,7 +82,7 @@ void main()
     float result = abs(10);
     // abs is now in the this file namespace, but i think is not good in large codebases 
     // so you should wrap it with namespace alias "import std::math as math" so you can use it like this "math::abs(10);"
-    // or use static class/struct "import std::math" so you can use it like this  "Math.abs(10);"
+    // or use static class/struct "import std::math" so you can use it like this "Math.abs(10);"
 }
 ```
 
