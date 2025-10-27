@@ -175,6 +175,10 @@ string name = "Bob";
 int8 number_heap = heapalloc 69;
 defer delete number_heap;
 
+int8* meaning_of_life = &(heapalloc int8);
+*meaning_of_life = 42;
+defer delete meaning_of_life;
+
 // with array, collections, and user types you need to specify where to allocate
 int32[] numbers_heap = heapalloc [1, 2, 3, 4];
 defer delete numbers_heap;
