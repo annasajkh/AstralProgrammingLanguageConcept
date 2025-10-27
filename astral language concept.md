@@ -1,6 +1,6 @@
 ### Namespace
 
-The default namespace of a piece of code is project name + file path of the file + the file name it was written in <br>
+The default namespace of a piece of code is project name + file path of the file + the file name it was written in\
 for example
 the file path is `/src/main.astral` and project name is test_project
 ```cs
@@ -61,7 +61,7 @@ namespace std::io
 }
 ```
 
-importing namespaces
+importing namespaces\
 file `math.astral`
 ```cs
 public namespace std::math
@@ -86,8 +86,7 @@ void main()
 }
 ```
 
-namespace alias to prevent collisions
-
+namespace alias to prevent collisions\
 file `main.astral`
 ```cs
 import std::math as mathematic;
@@ -103,16 +102,16 @@ if there is a clash it will error in compile time
 
 ### Variables
 ```cs
-// all variables is immutable by default like rust
+// all variables is immutable by default like in rust
 int32 score = 10;
 score = 20; // Error: Cannot modify immutable variable "score"
 
 // make it mutable
 mutable int32 size = 20;
-size = 30; // This work
+size = 30; // this work
 
 // all variables are also not null by default
-int32 width = null; // Error
+int32 width = null; // error
 
 // to make it nullable use the ? operator
 int32? maybe_height = null;
@@ -120,7 +119,9 @@ int32? maybe_height = null;
 string? maybe_name;
 bool? maybe_enabled;
 
-// check if it null
+string name; // error
+
+// check if it's null
 if (maybe_height is int32 height)
 {
     import std::io;
@@ -134,7 +135,7 @@ if (maybe_height is int32 height)
 ### Data Types
 
 ```cs
-//primitive data types are all allocated on the stack by default
+// primitive data types are all allocated on the stack by default
 
 // signed int types
 int8 number1 = 1;
