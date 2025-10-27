@@ -1,6 +1,6 @@
 ### Namespace
 
-The default namespace of a piece of code is project name + file path of the file + the file name it was written in\
+The default namespace of a piece of code is project name + file path of the file + the file name it was written in (idk if this a good idea but it's better than putting it into the global scope by default)\
 for example
 the file path is `/src/main.astral` and project name is test_project
 ```cs
