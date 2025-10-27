@@ -40,7 +40,7 @@ and there is also `public` to make it accessible everywhere
 ```cs
 internal namespace engine_utils
 {
-    
+
 }
 
 public namespace cat
@@ -217,13 +217,29 @@ class Person
 Person lisa = heapalloc Person(name: "Lisa" age: 34);
 lisa.say_hi();
 
-// function pointers
+// function type
 int32 function(int32 number) double_it = (int32 number) 
 {
     return number * number;
 };
 
 Console.println(double_it(10));
+
+// events
+event void function() say;
+
+say += () {
+    Console.println("Hello");
+}
+
+say += () {
+    Console.println("World");
+}
+
+say();
+// will print
+// Hello
+// World
 
 // WIP
 ```
