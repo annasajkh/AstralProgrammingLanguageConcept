@@ -251,7 +251,7 @@ int32 number = 32;
 int32* number_ptr = &number;
 ```
 
-Pointers are not null by default to make it nullable add ? operator
+Pointers are non null by default to make it nullable add ? operator
 ```cs
 int32*? maybe_number_ptr = nullptr;
 
@@ -277,5 +277,5 @@ int32 number_stack = stackalloc 8;
 
 // allocate on the heap using default allocator
 int32 number_heap = heapalloc 8;
-defer delete number_heap 
+defer delete number_heap;
 ```
