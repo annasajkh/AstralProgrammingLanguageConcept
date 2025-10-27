@@ -98,7 +98,7 @@ void main()
 }
 ```
 
-if there is a clash it will error in compile time
+if there is a clash it will error at compile time
 
 ### Variables
 ```cs
