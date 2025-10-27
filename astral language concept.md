@@ -4,7 +4,7 @@ The default namespace of a piece of code is project name + file path of the file
 for example
 the file path is `/src/main.astral` and project name is test_project
 ```cs
-import operating_system::console as console
+import system::console as console
 
 // the namespace for the main function would be test_project::src::main
 void main()
@@ -32,27 +32,17 @@ namespace math
     }
 }
 ```
-or with :: operator
-```cs
-public float math::abs(float number)
-{
-    return number * -1 if number < 0 else number;
-}
-
-// accessing namespace is using :: operator like in c++
-float result = math::abs(10);
-```
 
 you can defined nested namespace like this
 ```cs
-namespace operating_system::console;
+namespace system::console;
 
-namespace operating_system::display
+namespace system::display
 {
 
 }
 
-public float operating_system::console::beep()
+public float system::console::beep()
 {
 
 }
@@ -82,7 +72,7 @@ namespace alias to prevent namespace collisions
 file `main.astral`
 ```cs
 import math as mathematic;
-import operating_system::console as console;
+import system::console as console;
 
 void main()
 {
@@ -222,7 +212,7 @@ bool? maybe_enabled;
 // check if it null
 if (maybe_height is int32 height)
 {
-    import operating_system::console as console;
+    import system::console as console;
 
     console::println(height);
 }
@@ -244,7 +234,7 @@ int32*? maybe_number_ptr = nullptr;
 // and then you can use the same check to access it
 if (maybe_number_ptr is int32* number_ptr)
 {
-    import operating_system::console as console;
+    import system::console as console;
 
     console::println(&number_ptr);
 }
