@@ -79,10 +79,11 @@ import std::math;
 
 void main()
 {
-    float result = abs(10);
+    float result = abs(-10);
 }
 ```
 `abs()` is now in the main namespace, but i think is not good in large codebases\
+because it can collide with the stuff in the main namespace if they have the same name
 so you should wrap it with namespace alias like this
 ```cs
 
@@ -90,7 +91,7 @@ import std::math as math;
 
 void main()
 {
-    math::abs(10);
+    math::abs(-10);
 }
 ```
 or use static class/struct
