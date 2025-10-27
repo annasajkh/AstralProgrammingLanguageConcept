@@ -4,17 +4,18 @@ The default namespace of a piece of code is project name + file path of the file
 for example
 the file path is `/src/main.astral` and project name is test_project
 ```cs
-import system::console as console
+import std::io
 
 // the namespace for the main function would be test_project::src::main
 void main()
 {
-    console::println("Hello World");
+    // Console is a static class or struct
+    Console.println("Hello World");
 }
 ```
 
 you can define your own namespace using "namespace" keyword
-for examples
+for example
 
 ```cs
 // this namespace will apply to the entire file
@@ -25,24 +26,36 @@ but you can namespace a portion of code like this
 ```cs
 namespace math
 {
-    // private by default
-    public float abs(float number)
+    float abs(float number)
     {
         return number * -1 if number < 0 else number;
     }
 }
 ```
 
-you can defined nested namespace like this
+namespace are `private` by default so it can only be accessed in the same file
+there is `internal` like in c# to make it accessible on the current project, useful for libraries
+and there is also `public` to make it accessible everywhere
 ```cs
-namespace system::console;
+internal namespace math
+{
+    float abs(float number)
+    {
+        return number * -1 if number < 0 else number;
+    }
+}
 
-namespace system::display
+public namespace cat
 {
 
 }
+```
 
-public float system::console::beep()
+you can defined nested namespace like this
+```cs
+namespace std::io
+
+namespace std::io
 {
 
 }
@@ -51,56 +64,77 @@ public float system::console::beep()
 importing namespaces
 file `math.astral`
 ```cs
-public float abs(float number)
+public namespace std::math
 {
-    return number * -1 if number < 0 else number;
+    float abs(float number)
+    {
+        return number * -1 if number < 0 else number;
+    }
 }
 ```
 
 file `main.astral`
 ```cs
-import math;
+import std::math;
 
 void main()
 {
-    float result = math::abs(10);
+    float result = abs(10);
+    // abs is now in the this file namespace, but i think is not good in large codebases 
+    // so you should wrap it with namespace alias "import std::math as math" so you can use it like this "math::abs(10);"
+    // or use static class/struct "import std::math" so you can use it like this  "Math.abs(10);"
 }
 ```
 
-namespace alias to prevent namespace collisions
+namespace alias to prevent collisions
 
 file `main.astral`
 ```cs
-import math as mathematic;
-import system::console as console;
+import std::math as mathematic;
+import std::io;
 
 void main()
 {
-    console::println(mathematic::abs(10));
+    Console.println(mathematic::abs(10));
 }
 ```
 
-if there is a namespace clash it will error in compile time
-like for example
-file `main.astral`
+if there is a clash it will error in compile time
+
+### Variables
 ```cs
-import math;
+// all variables is immutable by default like rust
+int32 score = 10;
+score = 20; // Error: Cannot modify immutable variable "score"
 
-public float math::abs(float number)
+// make it mutable
+mutable int32 size = 20;
+size = 30; // This work
+
+// all variables are also not null by default
+int32 width = null; // Error
+
+// to make it nullable use the ? operator
+int32? maybe_height = null;
+// you can also leave it uninitialize and it will assign it to null (no default values)
+string? maybe_name;
+bool? maybe_enabled;
+
+// check if it null
+if (maybe_height is int32 height)
 {
-    // oops there is already abs in math namespace this will error at compile time
+    import std::io;
+
+    Console.println(height);
 }
 
-void main()
-{
-    float result = math::abs(10);
-}
+// WIP
 ```
 
 ### Data Types
 
 ```cs
-//primitive data types are all defaulted to be allocated on the stack
+//primitive data types are all allocated on the stack by default
 
 // signed int types
 int8 number1 = 1;
@@ -131,31 +165,22 @@ bool enabled = true;
 char a = 'a';
 string name = "Bob";
 
-// this is allocated on the stack by default
-int32[] numbers = [1, 2, 3, 4];
+// you can also allocate primitives on the heap by doing this
+int8 number_heap = heapalloc 69;
+defer delete number_heap;
 
-import programming_language::collections;
+// with array, collections, and user types you need to specify where to allocate
+int32[] numbers_heap = heapalloc [1, 2, 3, 4];
+defer delete numbers_heap;
 
-// this is allocated on the stack by default
-List<string> names = ["Bob", "Steve", "Alex"];
+import std::collections;
+
+List<string> names = heapalloc ["Bob", "Steve", "Alex"];
 names.add("robert"); 
 
-// this is allocated on the stack by default
-Dictionary<int32, Person> people = {
-    {
-        2424525,
-        heapalloc Person("Bob", 24)
-    },
-    
-    {
-        3232224,
-        heapalloc Person("Steve", 32)
-    }
-}
+defer delete names;
 
-// or you can specify where you want to allocate
-var people = heapalloc Dictionary<int32, Person>()
-{
+Dictionary<int32, Person> people = heapalloc {
     {
         2424525,
         heapalloc Person("Bob", 24)
@@ -169,17 +194,20 @@ var people = heapalloc Dictionary<int32, Person>()
 
 defer delete people;
 
-enum Weapon
+import std::io;
+
+class Person
 {
-    Sword,
-    Bow,
-    Gun
+    public Person(string name = name, uint8 age = age);
+
+    public void say_hi()
+    {
+        Console.println($"Hi my name is {name}, and i'm {age} years old");
+    }
 }
 
-struct Color
-{
-    
-}
+Person lisa = heapalloc Person(name: "Lisa" age: 34);
+lisa.say_hi();
 
 // function pointers
 int32 function(int32 number) double_it = (int32 number) 
@@ -187,35 +215,7 @@ int32 function(int32 number) double_it = (int32 number)
     return number * number;
 };
 
-// WIP
-```
-
-### Variables
-```cs
-// all variables is immutable by default like rust
-int32 score = 10;
-score = 20; // Error: Cannot modify immutable variable "score"
-
-// make it mutable
-mutable int32 size = 20;
-size = 30; // This work
-
-// all variables are also not null by default
-int32 width = null; // Error
-
-// to make it nullable use the ? operator
-int32? maybe_height = null;
-// you can also leave it uninitialize and it will assign it to null (no default values)
-string? maybe_name;
-bool? maybe_enabled;
-
-// check if it null
-if (maybe_height is int32 height)
-{
-    import system::console as console;
-
-    console::println(height);
-}
+Console.println(double_it(10));
 
 // WIP
 ```
@@ -234,9 +234,9 @@ int32*? maybe_number_ptr = nullptr;
 // and then you can use the same check to access it
 if (maybe_number_ptr is int32* number_ptr)
 {
-    import system::console as console;
+    import std::io;
 
-    console::println(&number_ptr);
+    Console.println(&number_ptr);
 }
 
 // nullable pointer to a nullable pointer to a nullable pointer
@@ -249,10 +249,9 @@ int32*?*?*? something = null;
 ```cs
 
 // allocate on the stack using default allocator
-int32* number_stack = stackalloc int;
-*number_stack = 10;
+int32 number_stack = stackalloc 8;
 
 // allocate on the heap using default allocator
-int32* number_heap = heapalloc int;
-*number_heap = 20;
+int32 number_heap = heapalloc 8;
+defer delete number_heap 
 ```
