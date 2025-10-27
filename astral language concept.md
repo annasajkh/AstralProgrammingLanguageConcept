@@ -82,7 +82,7 @@ void main()
     float result = abs(10);
 }
 ```
-abs is now in the this file namespace, but i think is not good in large codebases\
+`abs()` is now in the main namespace, but i think is not good in large codebases\
 so you should wrap it with namespace alias like this
 ```cs
 
