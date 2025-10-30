@@ -3,7 +3,7 @@
 if you don't wrap variables, functions, class, etc in a namespace you cannot import it to other file but you can use it in the current file\
 for example
 ```cs
-import std::io
+import std::io;
 
 int8 number = 69;
 
