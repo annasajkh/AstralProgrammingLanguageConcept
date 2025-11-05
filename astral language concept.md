@@ -1,3 +1,14 @@
+### Hello World
+
+```cs
+import std::io;
+
+void main()
+{
+    Console.println("Hello World");
+}
+```
+
 ### Namespace
 
 if you don't wrap variables, functions, class, etc in a namespace you cannot import it to other file but you can use it in the current file\
@@ -282,4 +293,5 @@ int32 number_stack = stackalloc 8;
 // allocate on the heap using default allocator
 int32 number_heap = heapalloc 8;
 defer delete number_heap;
+
 ```
