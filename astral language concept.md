@@ -21,7 +21,6 @@ int8 number = 69;
 
 void main()
 {
-    Console.println("Hello World");
     Console.println(number);
 }
 ```
