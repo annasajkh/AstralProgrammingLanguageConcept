@@ -11,12 +11,13 @@ void main()
 ```
 
 ### Project Structure
-the project structure is like in c#
-there is top level workspace containing one or many projects
-the workspace have their own configuration that apply to all sub projects
-the configuration file is called `workspace.astral`
-each project have their own configuration in a config file called
+the project structure is like in c#\
+there is top level workspace containing one or many projects\
+the workspace have their own configuration that apply to all sub projects\
+the configuration file is called `workspace.astral`\
+each project have their own configuration in a config file called\
 `project.astral` like zig it uses it's own language for configuration\
+
 ![alt text](<assets/language project structure.png>)
 
 ### Namespace
