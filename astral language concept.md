@@ -5,6 +5,7 @@ import std::io;
 
 void main()
 {
+    // Console is a static class or struct
     Console.println("Hello World");
 }
 ```
@@ -20,7 +21,6 @@ int8 number = 69;
 
 void main()
 {
-    // Console is a static class or struct
     Console.println("Hello World");
     Console.println(number);
 }
